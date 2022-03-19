@@ -1,0 +1,12 @@
+CREATE TABLE STARSHIP
+(
+    ID                 SERIAL               PRIMARY KEY,
+    NAME               VARCHAR(256)         NOT NULL CHECK (CHAR_LENGTH(NAME) > 0)
+);
+
+CREATE TABLE LOAD_STARSHIP
+(
+    ID                 SERIAL               PRIMARY KEY,
+    SPACE_MARINE       INTEGER              NOT NULL,
+    STARSHIP           INTEGER              REFERENCES STARSHIP (ID) ON UPDATE CASCADE ON DELETE CASCADE
+);

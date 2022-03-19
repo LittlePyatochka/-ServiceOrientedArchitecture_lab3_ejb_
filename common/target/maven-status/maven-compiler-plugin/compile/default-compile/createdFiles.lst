@@ -1,0 +1,14 @@
+kamysh\dto\ErrorDTO$ErrorDTOBuilder.class
+kamysh\dto\ValidationErrorDTO.class
+kamysh\dto\StarshipListDTO$StarshipListDTOBuilder.class
+kamysh\exceptions\StorageServiceRequestException.class
+kamysh\dto\StarshipListDTO.class
+kamysh\dto\ValidationErrorDTO$ValidationErrorDTOBuilder.class
+kamysh\exceptions\SpaceMarineOnBoardException.class
+kamysh\exceptions\ErrorMessage.class
+kamysh\service\StarshipService.class
+kamysh\dto\ErrorDTO.class
+kamysh\exceptions\ArgumentFormatException.class
+kamysh\dto\StarshipDTO$StarshipDTOBuilder.class
+kamysh\exceptions\EntryNotFound.class
+kamysh\dto\StarshipDTO.class

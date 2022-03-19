@@ -1,0 +1,10 @@
+kamysh\entity\AstartesCategory.class
+kamysh\util\ClientFactoryBuilder.class
+kamysh\entity\Starship.class
+kamysh\repository\SessionFactoryBuilder.class
+kamysh\entity\Starship$1.class
+kamysh\repository\StarshipRepository.class
+kamysh\entity\Starship$StarshipBuilderImpl.class
+kamysh\entity\Starship$StarshipBuilder.class
+kamysh\entity\LoadStarship.class
+kamysh\service\StarshipServiceImpl.class

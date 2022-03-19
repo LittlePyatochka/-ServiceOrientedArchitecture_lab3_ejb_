@@ -1,0 +1,12 @@
+kamysh\handler\NullPointerMapper.class
+kamysh\controllers\HealthCkeckResource.class
+kamysh\filters\CorsFilter.class
+kamysh\handler\EntryNotFoundMapper.class
+kamysh\controllers\ContextProvider.class
+kamysh\handler\RemoteExceptionsHandler.class
+kamysh\controllers\StarshipResource.class
+kamysh\handler\ArgumentFormatExceptionMapper.class
+kamysh\handler\SpaceMarineOnBoardMapper.class
+kamysh\handler\StorageServiceRequestErrorMapper.class
+kamysh\handler\ErrorCode.class
+kamysh\RestApplication.class
