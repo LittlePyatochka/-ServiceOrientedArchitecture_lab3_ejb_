@@ -1,6 +1,11 @@
 package kamysh.exceptions;
 
-public class SpaceMarineOnBoardException extends Throwable{
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class SpaceMarineOnBoardException extends Exception {
     private Long id;
 
 

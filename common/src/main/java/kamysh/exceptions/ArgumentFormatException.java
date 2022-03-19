@@ -1,8 +1,11 @@
 package kamysh.exceptions;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-@Getter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class ArgumentFormatException extends Exception {
     private final String argument;
 

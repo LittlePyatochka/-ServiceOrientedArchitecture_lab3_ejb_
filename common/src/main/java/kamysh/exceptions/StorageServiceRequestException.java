@@ -1,6 +1,11 @@
 package kamysh.exceptions;
 
-public class StorageServiceRequestException extends Throwable{
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class StorageServiceRequestException extends Exception{
     public StorageServiceRequestException(String message) {
         super(message);
     }

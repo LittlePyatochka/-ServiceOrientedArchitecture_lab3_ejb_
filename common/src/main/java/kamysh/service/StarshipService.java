@@ -11,9 +11,9 @@ import javax.ejb.Remote;
 public interface StarshipService {
 
     StarshipDTO setParatroopers(Long starshipId, Long spaceMarineId) throws EntryNotFound, SpaceMarineOnBoardException, StorageServiceRequestException;
-    StarshipDTO landAllParatroopers(Long starshipId) throws EntryNotFound;
+    StarshipDTO landAllParatroopers(Long starshipId) throws EntryNotFound, StorageServiceRequestException;
     boolean checkById(Long id) throws StorageServiceRequestException, EntryNotFound;
-    void checkServerState() throws StorageServiceRequestException;
-    void checkSpaceMarineOnBoard(final long spaceMarineId, final long currentStarshipId) throws SpaceMarineOnBoardException;
-    void landParatrooper(Long spaceMatine);
+    void checkServerState() throws StorageServiceRequestException, EntryNotFound;
+    void checkSpaceMarineOnBoard(final long spaceMarineId, final long currentStarshipId) throws SpaceMarineOnBoardException, StorageServiceRequestException, EntryNotFound;
+    void landParatrooper(Long spaceMatine) throws StorageServiceRequestException, EntryNotFound;
 }

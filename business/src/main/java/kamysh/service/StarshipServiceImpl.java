@@ -24,15 +24,11 @@ public class StarshipServiceImpl implements StarshipService {
     private final Client client;
     private String storageServiceUrl;
     private final StarshipRepository starshipRepository;
-    private final String targetId = "l1";
+    private final String targetId = "soa1";
 
     public StarshipServiceImpl() {
         this.client = ClientFactoryBuilder.getClient();
-//        this.storageServiceUrl = ClientFactoryBuilder.getStorageServiceUrl();
         this.starshipRepository = new StarshipRepository();
-        initServices();
-
-
     }
 
     @Override
@@ -62,7 +58,7 @@ public class StarshipServiceImpl implements StarshipService {
     }
 
     @Override
-    public StarshipDTO landAllParatroopers(Long starshipId) throws EntryNotFound {
+    public StarshipDTO landAllParatroopers(Long starshipId) throws EntryNotFound, StorageServiceRequestException {
         initServices();
 
         Starship starship = starshipRepository.findById(starshipId);
@@ -103,7 +99,7 @@ public class StarshipServiceImpl implements StarshipService {
     }
 
     @Override
-    public void checkServerState() throws StorageServiceRequestException {
+    public void checkServerState() throws StorageServiceRequestException, EntryNotFound {
         initServices();
 
         String url = storageServiceUrl + "api/state";
@@ -119,7 +115,7 @@ public class StarshipServiceImpl implements StarshipService {
     }
 
     @Override
-    public void checkSpaceMarineOnBoard(final long spaceMarineId, final long currentStarshipId) throws SpaceMarineOnBoardException {
+    public void checkSpaceMarineOnBoard(final long spaceMarineId, final long currentStarshipId) throws SpaceMarineOnBoardException, StorageServiceRequestException, EntryNotFound {
         initServices();
 
         try {
@@ -135,26 +131,25 @@ public class StarshipServiceImpl implements StarshipService {
     }
 
     @Override
-    public void landParatrooper(Long spaceMatine) {
+    public void landParatrooper(Long spaceMatine) throws StorageServiceRequestException, EntryNotFound {
         initServices();
         starshipRepository.deleteParatrooper(spaceMatine);
     }
 
-    private boolean initServices() {
-        String sdUrl = System.getenv("CONSUL_URL");
+    private boolean initServices() throws StorageServiceRequestException, EntryNotFound {
+        String sdUrl = System.getProperty("CONSUL_URL");
         String url = sdUrl + "/v1/agent/service/" + targetId;
+        System.out.println("TRY TO CALL CONSUL " + url);
         try {
-            Response response = client.target(url).request().get();
-            if (response.getStatus() != 200){
-                String jsonString = response.getEntity().toString();
-                JsTypeComplex jsonResponse = (JsTypeComplex) JsonStringParser.parseJsonString(jsonString);
-
-                storageServiceUrl = "https://" + jsonResponse.get("Address").toString().replace("\"", "") + ":" + jsonResponse.get("Port");
-            }
-
+            Response response = client.target(url).request(MediaType.APPLICATION_JSON).get();
+            System.out.println(response);
+            String jsonString = response.readEntity(String.class);
+            JsTypeComplex jsonResponse = (JsTypeComplex) JsonStringParser.parseJsonString(jsonString);
+            storageServiceUrl = String.format("http://%s:%s/",
+                    jsonResponse.get("Address").toString().replace("\"", ""),
+                    jsonResponse.get("Port").toString());
         } catch (Exception e) {
-
-            return false;
+            throw new StorageServiceRequestException(ErrorMessage.SERVER_NOT_AVAILABLE);
         }
         return true;
     }
