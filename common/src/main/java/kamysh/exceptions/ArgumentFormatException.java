@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ArgumentFormatException extends Exception {
+public class ArgumentFormatException extends RemoteServiceException {
     private final String argument;
 
     public ArgumentFormatException(String argument, String message) {

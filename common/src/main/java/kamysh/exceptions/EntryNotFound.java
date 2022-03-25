@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class EntryNotFound extends Exception {
+public class EntryNotFound extends RemoteServiceException {
     private Long id;
 
     public EntryNotFound() {

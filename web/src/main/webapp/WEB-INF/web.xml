@@ -4,14 +4,38 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-<!--  <security-constraint>-->
-<!--    <web-resource-collection>-->
-<!--      <web-resource-name>Secured</web-resource-name>-->
-<!--      <url-pattern>/*</url-pattern>-->
-<!--    </web-resource-collection>-->
+  <filter>
+    <filter-name>CORS</filter-name>
+    <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+    <init-param>
+      <param-name>cors.allowGenericHttpRequests</param-name>
+      <param-value>true</param-value>
+    </init-param>
 
-<!--    <user-data-constraint>-->
-<!--      <transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
-<!--    </user-data-constraint>-->
-<!--  </security-constraint>-->
+    <init-param>
+      <param-name>cors.allowOrigin</param-name>
+      <param-value>*</param-value>
+    </init-param>
+
+    <init-param>
+      <param-name>cors.allowSubdomains</param-name>
+      <param-value>false</param-value>
+    </init-param>
+
+    <init-param>
+      <param-name>cors.supportedMethods</param-name>
+      <param-value>GET, POST, HEAD, PUT, DELETE, OPTIONS</param-value>
+    </init-param>
+
+    <init-param>
+      <param-name>cors.supportedHeaders</param-name>
+      <param-value>*</param-value>
+    </init-param>
+
+  </filter>
+
+  <filter-mapping>
+    <filter-name>CORS</filter-name>
+    <url-pattern>*</url-pattern>
+  </filter-mapping>
 </web-app>

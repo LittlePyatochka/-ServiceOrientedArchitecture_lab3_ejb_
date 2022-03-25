@@ -1,19 +1,17 @@
 package kamysh.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+@XmlRootElement
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@XmlRootElement
-public class ErrorDTO implements Serializable {
-    String message;
-    String error;
+public class StarshipArgumentDTO implements Serializable {
+    private Long starship;
+    private Long spaceMarine;
 }

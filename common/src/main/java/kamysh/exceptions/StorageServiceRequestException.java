@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class StorageServiceRequestException extends Exception{
+public class StorageServiceRequestException extends RemoteServiceException{
     public StorageServiceRequestException(String message) {
         super(message);
     }

@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class SpaceMarineOnBoardException extends Exception {
+public class SpaceMarineOnBoardException extends RemoteServiceException{
     private Long id;
 
 

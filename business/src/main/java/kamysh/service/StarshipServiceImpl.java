@@ -117,17 +117,18 @@ public class StarshipServiceImpl implements StarshipService {
     @Override
     public void checkSpaceMarineOnBoard(final long spaceMarineId, final long currentStarshipId) throws SpaceMarineOnBoardException, StorageServiceRequestException, EntryNotFound {
         initServices();
-
+        Long starshipId;
         try {
-            Long starshipId = starshipRepository.getStarshipIdBySpaceMarine(spaceMarineId);
-            if (currentStarshipId == starshipId) {
-                throw new SpaceMarineOnBoardException();
-            } else {
-                throw new SpaceMarineOnBoardException(starshipId);
-            }
+            starshipId = starshipRepository.getStarshipIdBySpaceMarine(spaceMarineId);
         } catch (Exception e) {
             return;
         }
+        if (currentStarshipId == starshipId) {
+            throw new SpaceMarineOnBoardException();
+        } else {
+            throw new SpaceMarineOnBoardException(starshipId);
+        }
+
     }
 
     @Override
